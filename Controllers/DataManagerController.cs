@@ -4,8 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using UNIKK_API.Contexts;
-using UNIKK_API.Dto;
+using Unikc.DAL.Contexts;
+using Unikc.DAL.Dto;
 
 namespace UNIKK_API.Controllers
 {
@@ -31,7 +31,7 @@ namespace UNIKK_API.Controllers
             {
 
                 var rlist = new ListofResidents();
-                var listResidents = await _context.Query<LoadDataDto>().Where(x => x.IdCompany == Id).ToListAsync();
+                var listResidents = await _context.Query<LoadDataDto>().Where(x => x.IdCompany == Id).OrderBy(x => x.code).ToListAsync();
                 rlist.list = listResidents; 
 
                 return rlist;

@@ -1,11 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using UNIKK_API.Contexts;
-using UNIKK_API.Entities;
+using Unikc.DAL.Contexts;
+using Unikc.DAL.Dto;
+using Unikc.DAL.Entities;
 
 namespace UNIKK_API.Controllers
 {
@@ -14,10 +16,11 @@ namespace UNIKK_API.Controllers
     public class EnterpricesController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
-
+   
         public EnterpricesController(ApplicationDbContext context)
         {
             _context = context;
+       
         }
 
         [HttpGet("/GetEnterpriceList")]
@@ -85,6 +88,82 @@ namespace UNIKK_API.Controllers
             await _context.SaveChangesAsync();
             return enterprice;
 
+        }
+
+
+
+
+        [HttpPost("/ValidateUser")]
+        public async Task<ActionResult<LoginDataDto>> ValidateUserPost([FromBody]LoginDto value)
+        {
+
+            try
+            {
+                var loginData = new LoginDataDto();
+
+                EnterpriceDto datos = new EnterpriceDto();
+                if (String.IsNullOrEmpty(value.email.ToString()) || String.IsNullOrEmpty(value.password.ToString()))
+                {
+                    var mensaje = new EnterpriceDto() { Error = true, Mensaje = "Datos incompletos" };
+                    return BadRequest(
+                         new LoginDataDto()
+                         {
+                             LoginData = mensaje
+                         });
+                }
+                Enterprice dt = new Enterprice();
+                dt = await _context.Enterprices.FirstOrDefaultAsync(x => x.EmailAdmin == value.email);
+
+                if (dt == null)
+                {
+                    var mensaje = new EnterpriceDto() { Error = true, Mensaje = "Login Fallido" };
+                    return NotFound(
+                         new LoginDataDto()
+                         {
+                             LoginData = mensaje
+                         });
+                }
+
+                if (dt.PasswordAdmin == value.password)
+                {
+
+                    //No usamos el automaper por que el DTO requiere de dos campos adicionales
+
+                    EnterpriceDto ed = new EnterpriceDto();
+                    ed.Id = dt.Id;
+                    ed.Address = dt.Address;
+                    ed.DateIni = dt.DateIni;
+                    ed.DaysWorking = dt.DaysWorking;
+                    ed.EmailAdmin = dt.EmailAdmin;
+                    ed.Tax_Id = dt.Tax_Id;
+                    ed.State = dt.State;
+                    ed.PhoneAdmin = dt.PhoneAdmin;
+                    ed.PasswordAdmin = dt.PasswordAdmin;
+                    ed.NameAdmin = dt.NameAdmin;
+                    ed.Name = dt.Name;
+                    ed.Mensaje = "OK";
+                    ed.Error = false;
+
+                    loginData.LoginData = ed;
+                    return loginData;
+                }
+                else
+                {
+                    var mensaje = new EnterpriceDto() { Error = true, Mensaje = "Login Fallido" };
+                    return BadRequest(
+                         new LoginDataDto()
+                         {
+                             LoginData = mensaje
+                         });
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
     }
 }

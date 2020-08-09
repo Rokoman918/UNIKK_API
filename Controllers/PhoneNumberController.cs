@@ -4,8 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using UNIKK_API.Contexts;
-using UNIKK_API.Entities;
+using Unikc.DAL.Contexts;
+using Unikc.DAL.Dto;
+using Unikc.DAL.Entities;
 
 namespace UNIKK_API.Controllers
 {
