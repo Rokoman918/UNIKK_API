@@ -15,9 +15,9 @@ namespace UNIKK_API.Controllers
     [ApiController]
     public class PersonController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContextApp _context;
 
-        public PersonController(ApplicationDbContext context)
+        public PersonController(ApplicationDbContextApp context)
         {
             _context = context;
         }

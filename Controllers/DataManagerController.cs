@@ -15,8 +15,8 @@ namespace UNIKK_API.Controllers
     public class DataManagerController : ControllerBase
     {
 
-        private readonly ApplicationDbContext _context;
-        public DataManagerController(ApplicationDbContext context)
+        private readonly ApplicationDbContextApp _context;
+        public DataManagerController(ApplicationDbContextApp context)
         {
             _context = context;
         }

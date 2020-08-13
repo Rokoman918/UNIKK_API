@@ -5,9 +5,14 @@ VisualStudioVersion = 16.0.29418.71
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Unikc_Web", "..\UNICK_WEB\Unick_Web\Unikc_Web\Unikc_Web.csproj", "{6BC3149E-8F54-4C86-BE7A-6C53F492210A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unikc.DAL", "..\UNIKC_DAL\Unikc.DAL\Unikc.DAL.csproj", "{93D4F764-D950-4E58-A878-B3D64C8DDF47}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Unikc.DAL", "..\UNIKC_DAL\Unikc.DAL\Unikc.DAL.csproj", "{93D4F764-D950-4E58-A878-B3D64C8DDF47}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UNIKK_API", "UNIKK_API.csproj", "{823F4A75-0FA1-46DC-8382-BA06D4FFEB74}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E07871A6-08FA-4505-8169-421A6109722C}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

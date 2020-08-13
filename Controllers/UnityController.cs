@@ -15,9 +15,9 @@ namespace UNIKK_API.Controllers
     [ApiController]
     public class UnityController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContextApp _context;
 
-        public UnityController(ApplicationDbContext context)
+        public UnityController(ApplicationDbContextApp context)
         {
             _context = context;
         }

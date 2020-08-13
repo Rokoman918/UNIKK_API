@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -15,12 +16,12 @@ namespace UNIKK_API.Controllers
     [ApiController]
     public class EnterpricesController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
-   
-        public EnterpricesController(ApplicationDbContext context)
+        private readonly ApplicationDbContextApp _context;
+        private readonly SignInManager<IdentityUser> _signInManager;
+        public EnterpricesController(ApplicationDbContextApp context, SignInManager<IdentityUser> signInManager)
         {
             _context = context;
-       
+            _signInManager = signInManager;
         }
 
         [HttpGet("/GetEnterpriceList")]
@@ -123,10 +124,11 @@ namespace UNIKK_API.Controllers
                              LoginData = mensaje
                          });
                 }
+                var result = await _signInManager.PasswordSignInAsync(value.email , value.password, false , lockoutOnFailure: false);
 
-                if (dt.PasswordAdmin == value.password)
+                //if (dt.PasswordAdmin == value.password)
+               if(result.Succeeded)
                 {
-
                     //No usamos el automaper por que el DTO requiere de dos campos adicionales
 
                     EnterpriceDto ed = new EnterpriceDto();

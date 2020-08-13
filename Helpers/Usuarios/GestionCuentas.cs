@@ -11,8 +11,8 @@ namespace UNIKK_API.Helpers.Usuarios
     public class GestionCuentas
     {
 
-        private readonly ApplicationDbContext _context;
-        public GestionCuentas(ApplicationDbContext pcontext)
+        private readonly ApplicationDbContextApp _context;
+        public GestionCuentas(ApplicationDbContextApp pcontext)
         {
             _context = pcontext;
         }

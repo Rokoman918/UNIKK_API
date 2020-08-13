@@ -14,8 +14,8 @@ namespace UNIKK_API.Controllers
     [ApiController]
     public class PhoneNumberController:ControllerBase
     {
-        private readonly ApplicationDbContext _context;
-        public PhoneNumberController(ApplicationDbContext context)
+        private readonly ApplicationDbContextApp _context;
+        public PhoneNumberController(ApplicationDbContextApp context)
         {
             _context = context;
         }
